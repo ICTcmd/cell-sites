@@ -99,6 +99,7 @@ const TowerMap: React.FC<TowerMapProps> = ({
   const heatmapLayer: HeatmapLayer = {
     id: 'signal-heatmap',
     type: 'heatmap',
+    source: 'signal-heatmap',
     paint: {
       // Color gradient based on RSRP values
       'heatmap-weight': [
@@ -142,6 +143,7 @@ const TowerMap: React.FC<TowerMapProps> = ({
   const signalPointLayer: CircleLayer = {
     id: 'signal-points',
     type: 'circle',
+    source: 'signal-points',
     paint: {
       'circle-radius': [
         'interpolate',
@@ -255,7 +257,7 @@ const TowerMap: React.FC<TowerMapProps> = ({
       >
         {/* Signal Heatmap Layer */}
         {showHeatmap && heatmapData && (
-          <Source type="geojson" data={heatmapData}>
+          <Source id="signal-heatmap" type="geojson" data={heatmapData}>
             <Layer {...heatmapLayer} />
           </Source>
         )}
