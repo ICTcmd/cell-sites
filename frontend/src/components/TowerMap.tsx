@@ -3,8 +3,8 @@ import Map, { Marker, Source, Layer, Popup } from 'react-map-gl';
 import type { CircleLayer, HeatmapLayer } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-// Replace with your Mapbox token
-const MAPBOX_TOKEN = 'YOUR_MAPBOX_ACCESS_TOKEN';
+// Get Mapbox token from environment variable
+const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || '';
 
 // Band color mapping
 const BAND_COLORS: Record<string, string> = {
