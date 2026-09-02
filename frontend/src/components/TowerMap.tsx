@@ -72,7 +72,11 @@ const TowerMap: React.FC<TowerMapProps> = ({
         url += `&network_type=${selectedNetworkType}`;
       }
       
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        headers: {
+          'ngrok-skip-browser-warning': 'true'
+        }
+      });
       const data = await response.json();
       setTowers(data);
     } catch (error) {
@@ -87,7 +91,11 @@ const TowerMap: React.FC<TowerMapProps> = ({
         url += `&network_type=${selectedNetworkType}`;
       }
       
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        headers: {
+          'ngrok-skip-browser-warning': 'true'
+        }
+      });
       const data = await response.json();
       setHeatmapData(data.geojson);
     } catch (error) {

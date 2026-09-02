@@ -2,19 +2,21 @@ version: '3.8'
 
 services:
   # PostgreSQL Database with PostGIS
-  database:
+  cellsite-database:
     image: postgis/postgis:15-3.3
-    container_name: cellsite-db
+    container_name: cellsite-postgres
     environment:
       POSTGRES_DB: cellsite_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: cellsite123
       PGDATA: /var/lib/postgresql/data/pgdata
     ports:
-      - "5432:5432"
+      - "5433:5432"  # Using 5433 on host to avoid any conflicts
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - cellsite_postgres_data:/var/lib/postgresql/data
       - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    networks:
+      - cellsite-network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -22,14 +24,13 @@ services:
       retries: 5
 
   # FastAPI Backend
-  backend:
+  cellsite-backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: cellsite-backend
+    container_name: cellsite-api
     environment:
-      DATABASE_URL: postgresql://postgres:cellsite123@database:5432/cellsite_db
-      CORS_ORIGINS: http://localhost:3000,https://cell-sites.vercel.app
+      DATABASE_URL: postgresql://postgres:cellsite123@cellsite-database:5432/cellsite_db
       CITY_NAME: Manila
       COUNTRY: Philippines
       BBOX_MIN_LAT: 14.40
@@ -39,11 +40,17 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      database:
+      cellsite-database:
         condition: service_healthy
     volumes:
       - ./backend:/app
+    networks:
+      - cellsite-network
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
+networks:
+  cellsite-network:
+    driver: bridge
+
 volumes:
-  postgres_data:
+  cellsite_postgres_data:

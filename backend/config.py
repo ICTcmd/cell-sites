@@ -11,8 +11,8 @@ class Settings(BaseSettings):
     API_VERSION: str = "v1"
     DEBUG: bool = True
     
-    # CORS
-    CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:5173"]
+    # CORS - Allow all origins for now (will be filtered by backend)
+    CORS_ORIGINS: List[str] = ["*"]
     
     # City Bounding Box
     CITY_NAME: str = "Manila"
