@@ -15,12 +15,12 @@ class Settings(BaseSettings):
     CORS_ORIGINS: List[str] = ["*"]
     
     # City Bounding Box
-    CITY_NAME: str = "Manila"
-    COUNTRY: str = "Philippines"
-    BBOX_MIN_LAT: float = 14.40
-    BBOX_MAX_LAT: float = 14.80
-    BBOX_MIN_LON: float = 120.90
-    BBOX_MAX_LON: float = 121.15
+    CITY_NAME: str = "Bago City"
+    COUNTRY: str = "Negros Occidental, Philippines"
+    BBOX_MIN_LAT: float = 10.50
+    BBOX_MAX_LAT: float = 10.57
+    BBOX_MIN_LON: float = 122.80
+    BBOX_MAX_LON: float = 122.87
     
     # Triangulation Parameters
     MIN_SAMPLES_FOR_TRIANGULATION: int = 5

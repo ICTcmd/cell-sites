@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Cell Site Mapping & Analytics - Smart Communications</title>
-        <meta name="description" content="Cell tower mapping and network analytics dashboard" />
+        <title>Cell Site Mapping - Bago City, Negros Occidental</title>
+        <meta name="description" content="Smart Communications cell tower mapping for Bago City" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -44,7 +44,7 @@ export default function Home() {
         <footer className="bg-gray-800 text-white py-3 px-6 text-center text-sm z-20">
           <p>
             Cell Site Mapping System | Real-time Network Telemetry & Spatial Analytics |{' '}
-            <span className="text-indigo-400">Manila, Philippines</span>
+            <span className="text-indigo-400">Bago City, Negros Occidental</span>
           </p>
         </footer>
       </main>

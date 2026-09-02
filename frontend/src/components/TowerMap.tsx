@@ -39,8 +39,8 @@ interface TowerMapProps {
 
 const TowerMap: React.FC<TowerMapProps> = ({
   apiBaseUrl,
-  initialCenter = [121.0244, 14.5995], // Manila default
-  initialZoom = 12
+  initialCenter = [122.8333, 10.5333], // Bago City, Negros Occidental
+  initialZoom = 13
 }) => {
   const [towers, setTowers] = useState<Tower[]>([]);
   const [heatmapData, setHeatmapData] = useState<any>(null);
